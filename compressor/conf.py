@@ -102,46 +102,46 @@ class CompressorConf(AppConf):
     class Meta:
         prefix = "compress"
 
-    def configure_root(self, value):
-        # Uses Django's STATIC_ROOT by default
-        if value is None:
-            value = settings.STATIC_ROOT
-        if value is None:
-            raise ImproperlyConfigured(
-                "COMPRESS_ROOT defaults to " + "STATIC_ROOT, please define either"
-            )
-        return os.path.normcase(os.path.abspath(value))
-
-    def configure_url(self, value):
-        # Uses Django's STATIC_URL by default
-        if value is None:
-            value = settings.STATIC_URL
-        if not value.endswith("/"):
-            raise ImproperlyConfigured(
-                "URL settings (e.g. COMPRESS_URL) " "must have a trailing slash"
-            )
-        return value
-
-    def configure_cache_backend(self, value):
-        if value is None:
-            value = "default"
-        return value
-
-    def configure_offline_context(self, value):
-        if not value:
-            value = {"STATIC_URL": settings.STATIC_URL}
-        return value
-
-    def configure_template_filter_context(self, value):
-        if not value:
-            value = {"STATIC_URL": settings.STATIC_URL}
-        return value
-
-    def configure_precompilers(self, value):
-        if not isinstance(value, (list, tuple)):
-            raise ImproperlyConfigured(
-                "The COMPRESS_PRECOMPILERS setting "
-                "must be a list or tuple. Check for "
-                "missing commas."
-            )
-        return value
+    # def configure_root(self, value):
+    #     # Uses Django's STATIC_ROOT by default
+    #     if value is None:
+    #         value = settings.STATIC_ROOT
+    #     if value is None:
+    #         raise ImproperlyConfigured(
+    #             "COMPRESS_ROOT defaults to " + "STATIC_ROOT, please define either"
+    #         )
+    #     return os.path.normcase(os.path.abspath(value))
+    #
+    # def configure_url(self, value):
+    #     # Uses Django's STATIC_URL by default
+    #     if value is None:
+    #         value = settings.STATIC_URL
+    #     if not value.endswith("/"):
+    #         raise ImproperlyConfigured(
+    #             "URL settings (e.g. COMPRESS_URL) " "must have a trailing slash"
+    #         )
+    #     return value
+    #
+    # def configure_cache_backend(self, value):
+    #     if value is None:
+    #         value = "default"
+    #     return value
+    #
+    # def configure_offline_context(self, value):
+    #     if not value:
+    #         value = {"STATIC_URL": settings.STATIC_URL}
+    #     return value
+    #
+    # def configure_template_filter_context(self, value):
+    #     if not value:
+    #         value = {"STATIC_URL": settings.STATIC_URL}
+    #     return value
+    #
+    # def configure_precompilers(self, value):
+    #     if not isinstance(value, (list, tuple)):
+    #         raise ImproperlyConfigured(
+    #             "The COMPRESS_PRECOMPILERS setting "
+    #             "must be a list or tuple. Check for "
+    #             "missing commas."
+    #         )
+    #     return value
